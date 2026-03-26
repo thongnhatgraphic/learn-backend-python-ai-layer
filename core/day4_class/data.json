@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Learning python and AI Engineering",
+    "status": "pending"
+  },
+  {
+    "id": 2,
+    "name": "Learning python class",
+    "status": "completed"
+  },
+  {
+    "id": 3,
+    "name": "practice with class",
+    "status": "pending"
+  },
+  {
+    "id": 4,
+    "name": "practice with async / await",
+    "status": "pending"
+  },
+  {
+    "id": 5,
+    "name": "Learn FastApi",
+    "status": "pending"
+  },
+  {
+    "id": 6,
+    "name": "A",
+    "status": "pending"
+  },
+  {
+    "id": 7,
+    "name": "B",
+    "status": "pending"
+  },
+  {
+    "id": 8,
+    "name": "C",
+    "status": "pending"
+  }
+]

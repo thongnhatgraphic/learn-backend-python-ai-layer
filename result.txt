@@ -1,0 +1,3 @@
+max: 15
+min: 2
+average: 7.14
