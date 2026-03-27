@@ -1,8 +1,11 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from pydantic import BaseModel
+from sqlmodel import Session, select
+
 
 from app.models.task_model import Task
 from app.services.task_service import TaskService
+from app.database import get_session
 
 router = APIRouter()
 
@@ -13,18 +16,19 @@ class TaskRequest(BaseModel):
     progress: int
 
 @router.get("/tasks")
-async def get_tasks():
+async def get_tasks(session: Session = Depends(get_session)):
     return {
-        "data": task_service.get_tasks(),
-        "message": "List of tasks"
+        "data": session.exec(select(Task)).all(),
+        "message": "Get list of tasks successfully"
     }
 
 @router.get("/tasks/{task_id}")
-async def get_tasks(task_id: int):
+async def get_tasks(task_id: int, session: Session = Depends(get_session)):
     return {
-        "data": task_service.get_tasks(task_id),
-        "message": "List of tasks"
+        "data": session.exec(select(Task).where(Task.id == task_id)).first(),
+        "message": "Get task by Id successfully"
     }
+
 
 @router.post("/tasks")
 async def create_task(task : TaskRequest):

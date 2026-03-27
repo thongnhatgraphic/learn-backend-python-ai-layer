@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from sqlmodel import SQLModel, Field
 
 class Task(SQLModel, table=True):
@@ -8,6 +8,7 @@ class Task(SQLModel, table=True):
     description: str = 'Study hard, work hard, learning is very important!!!'
     progress: int = 0  # 0 -> 100
     priority: int = 0
+    deadline: datetime | None = None
     created_at: datetime = Field(default_factory= lambda: datetime.now(timezone.utc))
     updated_at: datetime = Field(default_factory= lambda: datetime.now(timezone.utc))
 
