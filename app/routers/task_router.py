@@ -5,13 +5,15 @@ from sqlmodel import Session
 from app.response_schema.task_schema import TaskResponse
 from app.response_schema.delete_response import DeleteResponse
 from app.services.task_service import TaskService
+from app.repositories.task_repository import TaskRepository
 from app.database import get_session
 
 router = APIRouter()
 
 
 def get_task_service(session: Session = Depends(get_session)):
-    return TaskService(session)
+    repo = TaskRepository(session)
+    return TaskService(repo)
 
 class TaskRequest(BaseModel):
     name: str
