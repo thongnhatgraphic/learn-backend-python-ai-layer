@@ -6,76 +6,70 @@ from app.models.task_model import Task
 
 
 class TaskService:
-    # def __init__(self):
-    #     self = self
+    def __init__(self, session: Session):
+        self.session = session
 
     def create_task(self, name):
-        with Session(engine) as session:
-            task = Task(name=name, status="pending")
+        task = Task(name=name, status="pending")
 
-            session.add(task)
-            session.commit()
-
-            session.refresh(task)
-            return task
+        self.session.add(task)
+        self.session.commit()
+        self.session.refresh(task)
+        return task
 
     def get_tasks(self):
-        with Session(engine) as session:
-            return session.exec(select(Task)).all()
+        return self.session.exec(select(Task)).all()
 
 
     def delete_task(self, task_id):
-        with Session(engine) as session:
-            task = session.get(Task, task_id)
+        task = self.session.get(Task, task_id)
         
-            if not task:
-                raise HTTPException(status_code=404, detail="Task not found")
+        if not task:
+            raise HTTPException(status_code=404, detail="Task not found")
     
-            session.delete(task)
-            session.commit()
-            return {"id": task_id}
+        self.session.delete(task)
+        self.session.commit()
+
+        return {"id": task_id}
 
     def update_task(self, task_id, name, progress):
-        with Session(engine) as session:
-            task = session.get(Task, task_id)
+        task = self.session.get(Task, task_id)
 
-            if not task:
-                raise HTTPException(status_code=404, detail="Task not found")
+        if not task:
+            raise HTTPException(status_code=404, detail="Task not found")
 
-            task.name = name
-            task.progress = progress
-            task.updated_at = datetime.now(timezone.utc)
-            session.add(task)
-            session.commit()
+        task.name = name
+        task.progress = progress
+        task.updated_at = datetime.now(timezone.utc)
+        self.session.add(task)
+        self.session.commit()
 
-            session.refresh(task)
+        self.session.refresh(task)
 
-            return task
+        return task
         
     def get_task(self, task_id):
-        with Session(engine) as session:
-            task = session.exec(
-                select(Task).where(Task.id == task_id)
-            ).first()
+        task = self.session.exec(
+            select(Task).where(Task.id == task_id)
+        ).first()
 
-            if not task:
-                raise HTTPException(status_code=404, detail="Task not found")
+        if not task:
+            raise HTTPException(status_code=404, detail="Task not found")
 
-            return task
+        return task
         
     def complete_task(self, task_id):
-        with Session(engine) as session:
-            task = session.get(Task, task_id)
+        task = self.session.get(Task, task_id)
 
-            if not task:
-                raise HTTPException(status_code=404, detail="Task not found")
+        if not task:
+            raise HTTPException(status_code=404, detail="Task not found")
 
-            task.status = "completed"
-            task.progress = 100
-            task.updated_at = datetime.now(timezone.utc)
-            session.add(task)
-            session.commit()
+        task.status = "completed"
+        task.progress = 100
+        task.updated_at = datetime.now(timezone.utc)
+        self.session.add(task)
+        self.session.commit()
 
-            session.refresh(task)
+        self.session.refresh(task)
 
-            return task
+        return task

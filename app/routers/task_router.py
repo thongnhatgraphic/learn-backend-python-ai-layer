@@ -1,59 +1,47 @@
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel
-from sqlmodel import Session, select
+from sqlmodel import Session 
 
-
-from app.models.task_model import Task
+from app.response_schema.task_schema import TaskResponse
+from app.response_schema.delete_response import DeleteResponse
 from app.services.task_service import TaskService
 from app.database import get_session
 
 router = APIRouter()
 
-task_service = TaskService()
+
+def get_task_service(session: Session = Depends(get_session)):
+    return TaskService(session)
 
 class TaskRequest(BaseModel):
     name: str
     progress: int
 
-@router.get("/tasks")
-async def get_tasks(session: Session = Depends(get_session)):
-    return {
-        "data": session.exec(select(Task)).all(),
-        "message": "Get list of tasks successfully"
-    }
+@router.get("/tasks", response_model= list[TaskResponse])
+async def get_tasks(taskService: TaskService = Depends(get_task_service)):
+    return taskService.get_tasks()
 
-@router.get("/tasks/{task_id}")
-async def get_tasks(task_id: int, session: Session = Depends(get_session)):
-    return {
-        "data": session.exec(select(Task).where(Task.id == task_id)).first(),
-        "message": "Get task by Id successfully"
-    }
+@router.get("/task/{task_id}", response_model=TaskResponse)
+async def get_task(task_id: int, taskService: TaskService = Depends(get_task_service)):
+    return taskService.get_task(task_id)
+
+@router.post("/tasks", response_model=TaskResponse)
+async def create_task(task : TaskRequest, taskService: TaskService = Depends(get_task_service)):
+    return taskService.create_task(task.name)
+
+@router.put("/tasks/{task_id}", response_model=TaskResponse)
+async def update_task(
+        task_id: int,
+        task: TaskRequest, 
+        taskService: TaskService = Depends(get_task_service)):
+    return taskService.update_task(task_id, task.name, task.progress)
 
 
-@router.post("/tasks")
-async def create_task(task : TaskRequest):
-    return {
-        "data": task_service.create_task(task.name),
-        "message": "Task added"
-    }
+@router.delete("/tasks/{task_id}", response_model=DeleteResponse)
+async def delete_task(task_id: int, taskService: TaskService = Depends(get_task_service)):
+    return taskService.delete_task(task_id)
+    
 
-@router.put("/tasks/{task_id}")
-async def update_task(task_id: int, task : TaskRequest):
-    return {
-        "data": task_service.update_task(task_id, task.name, task.progress),
-        "message": "Task updated"
-    }
-
-@router.delete("/tasks/{task_id}")
-async def delete_task(task_id : int):
-    return {
-        "data": task_service.delete_task(task_id),
-        "message": "Task was deleted"
-    }
-
-@router.put('/tasks/{task_id}/complete')
-async def complete_task(task_id: int):
-    return {
-        "data": task_service.complete_task(task_id),
-        "message": "Task completed"
-    }
+@router.put('/tasks/{task_id}/complete', response_model=TaskResponse)
+async def complete_task(task_id: int, taskService: TaskService = Depends(get_task_service)):
+    return taskService.complete_task(task_id)
