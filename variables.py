@@ -14,3 +14,5 @@ object = {
     "price": 10.5,
     "is_student": True
 }
+
+from scripts.seed_data import seed;

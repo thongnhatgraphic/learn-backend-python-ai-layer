@@ -19,7 +19,8 @@ class TaskService:
         return task
 
     def get_tasks(self, user_id: UUID):
-        return self.repository.get_all(user_id)
+        return self.repository.get_tasks_raw(user_id)
+        # return self.repository.get_all(user_id)
 
     def delete_task(self, task_id, user_id: UUID):
         print('\n user_id \n\n', user_id)

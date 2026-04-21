@@ -1,19 +1,17 @@
 from fastapi import FastAPI
 
-from app.database import create_db
+# from app.database import create_db
 from contextlib import asynccontextmanager
 from app.routers.__init__ import all_routers
-
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("🚀 START APP---------------------")
 
-    create_db()
+    # create_db()
     print("✅ Database created")
 
     yield
-
     print("🛑 SHUTDOWN")
 
 
