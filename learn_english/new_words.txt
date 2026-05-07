@@ -43,6 +43,15 @@ Partition, partition, partittion, partition, partition, partition
 
 Complexity, complexity, Complexity
 
+12------ cache stampede: Bộ nhớ ẩn, Bộ đệm ẩn
+
+13------ stampede: dẫm đạp
+
+14------ acquire: Giành được
+
+15------ acquire lock: Giành được
+
+
 SELECT *
 FROM orders
 WHERE user_id = 'A'
