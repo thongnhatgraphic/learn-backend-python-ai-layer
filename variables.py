@@ -4,9 +4,9 @@ price = 10.5
 is_student = True
 
 
-
+is_result ='notification:d6a88e15-b785-4405-885a-126a615f8f8b'.startswith("notification")
 # # 1.1
-
+print('is_result', is_result)
 # a = { 
 #         "filter": { 
 #             "status": "done" 
