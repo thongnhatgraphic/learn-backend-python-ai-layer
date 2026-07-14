@@ -3,10 +3,10 @@ import pandas as pd
 import random
 from pathlib import Path
 
-from ai_native.data_visualization.mini_project_EDA_4.phase1_generate_data.business_rules import (
+from ai_native.ML_foundation.data_visualization.mini_project_EDA_4.phase1_generate_data.business_rules import (
     business_rules,
 )
-from ai_native.data_visualization.mini_project_EDA_4.phase1_generate_data.constant import (
+from ai_native.ML_foundation.data_visualization.mini_project_EDA_4.phase1_generate_data.constant import (
     MIN_AGE,
     MAX_AGE,
     MIN_ENGLISH,

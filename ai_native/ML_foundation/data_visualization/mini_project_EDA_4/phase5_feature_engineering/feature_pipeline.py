@@ -1,10 +1,10 @@
-from ai_native.data_visualization.mini_project_EDA_4.phase5_feature_engineering.create_weighted_feature import (
+from ai_native.ML_foundation.data_visualization.mini_project_EDA_4.phase5_feature_engineering.create_weighted_feature import (
     create_weighted_feature,
 )
-from ai_native.data_visualization.mini_project_EDA_4.phase5_feature_engineering.create_ratio_feature import (
+from ai_native.ML_foundation.data_visualization.mini_project_EDA_4.phase5_feature_engineering.create_ratio_feature import (
     create_ratio_feature,
 )
-from ai_native.data_visualization.mini_project_EDA_4.phase5_feature_engineering.create_interaction_feature import (
+from ai_native.ML_foundation.data_visualization.mini_project_EDA_4.phase5_feature_engineering.create_interaction_feature import (
     create_interaction_feature,
 )
 

@@ -2,19 +2,19 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 
-from ai_native.data_visualization.mini_project_EDA_4.phase3_mini_generate_dirty_data.missing import (
+from ai_native.ML_foundation.data_visualization.mini_project_EDA_4.phase3_mini_generate_dirty_data.missing import (
     inject_missing,
 )
-from ai_native.data_visualization.mini_project_EDA_4.phase3_mini_generate_dirty_data.duplicate import (
+from ai_native.ML_foundation.data_visualization.mini_project_EDA_4.phase3_mini_generate_dirty_data.duplicate import (
     inject_duplicate,
 )
-from ai_native.data_visualization.mini_project_EDA_4.phase3_mini_generate_dirty_data.wrong_type import (
+from ai_native.ML_foundation.data_visualization.mini_project_EDA_4.phase3_mini_generate_dirty_data.wrong_type import (
     inject_wrong_type,
 )
-from ai_native.data_visualization.mini_project_EDA_4.phase3_mini_generate_dirty_data.invalid import (
+from ai_native.ML_foundation.data_visualization.mini_project_EDA_4.phase3_mini_generate_dirty_data.invalid import (
     inject_invalid_value,
 )
-from ai_native.data_visualization.mini_project_EDA_4.phase3_mini_generate_dirty_data.outlier import (
+from ai_native.ML_foundation.data_visualization.mini_project_EDA_4.phase3_mini_generate_dirty_data.outlier import (
     inject_outlier,
 )
 

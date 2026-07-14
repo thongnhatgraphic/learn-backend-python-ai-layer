@@ -1,6 +1,8 @@
 import pandas as pd
 
-from ai_native.data_visualization.mini_project_EDA_4.utils.utils import validate_columns
+from ai_native.ML_foundation.data_visualization.mini_project_EDA_4.utils.utils import (
+    validate_columns,
+)
 
 
 def create_weighted_feature(

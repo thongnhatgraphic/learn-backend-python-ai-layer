@@ -2,7 +2,9 @@ import pandas as pd
 import numpy as np
 import pathlib
 
-from ai_native.data_visualization.mini_project_EDA_4.utils.utils import validate_columns
+from ai_native.ML_foundation.data_visualization.mini_project_EDA_4.utils.utils import (
+    validate_columns,
+)
 
 
 def create_ratio_feature(

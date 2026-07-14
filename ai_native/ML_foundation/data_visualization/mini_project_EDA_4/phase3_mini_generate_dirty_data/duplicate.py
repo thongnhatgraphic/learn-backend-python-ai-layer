@@ -1,10 +1,10 @@
 import pandas as pd
 import numpy as np
 import random
-from ai_native.data_visualization.mini_project_EDA_4.phase3_mini_generate_dirty_data.utils import (
+from ai_native.ML_foundation.data_visualization.mini_project_EDA_4.phase3_mini_generate_dirty_data.utils import (
     generate_random_rows,
 )
-from ai_native.data_visualization.mini_project_EDA_4.phase3_mini_generate_dirty_data.business_ruls import (
+from ai_native.ML_foundation.data_visualization.mini_project_EDA_4.phase3_mini_generate_dirty_data.business_ruls import (
     percent_duplicate,
 )
 
